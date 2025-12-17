@@ -1,0 +1,24 @@
+﻿@model SimpleBlogMVCApplication.Models.Entities.Post
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">@Model.Title</h3>
+        <p class="text-muted">@Model.PublishedAt.ToShortDateString()</p>
+
+        <p class="card-text">@Model.Content</p>
+
+        <div class="mb-2">
+            @foreach (var tag in Model.PostTags)
+            {
+                <span class="badge bg-primary">@tag.Tag.Name</span>
+            }
+        </div>
+
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    </div>
+</div>

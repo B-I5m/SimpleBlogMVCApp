@@ -1,0 +1,19 @@
+using AutoMapper;
+using SimpleBlogMVCApplication.Models.Entities;
+using SimpleBlogMVCApplication.ViewModels.Post;
+using SimpleBlogMVCApplication.ViewModels.Tag;
+
+namespace SimpleBlogMVCApplication.Mapping;
+
+public class AutoMapperProfile : Profile
+{
+    public AutoMapperProfile()
+    {
+        // Для Post
+        CreateMap<PostCreateViewModel, Post>().ReverseMap();
+
+        // Для Tag
+        CreateMap<TagCreateViewModel, Tag>().ReverseMap();
+        CreateMap<TagViewModel, Tag>().ReverseMap();    
+    }
+}

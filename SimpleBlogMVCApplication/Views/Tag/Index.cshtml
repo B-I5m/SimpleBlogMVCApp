@@ -1,0 +1,50 @@
+﻿@model IReadOnlyCollection<SimpleBlogMVCApplication.Models.Entities.Tag>
+
+@{
+    ViewData["Title"] = "Tags";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Tags</h2>
+        <a asp-action="Create" class="btn btn-success">➕ Create Tag</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-secondary">
+            No tags created yet.
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var tag in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="fw-semibold mb-1">#@tag.Name</h5>
+                            <small class="text-muted mb-3">Created @tag.CreatedAt.ToString("dd MMM yyyy HH:mm")</small>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-action="Edit"
+                                   asp-route-id="@tag.Id"
+                                   class="btn btn-sm btn-outline-primary">✏ Edit</a>
+
+                                <form asp-action="Delete"
+                                      asp-route-id="@tag.Id"
+                                      method="post"
+                                      onsubmit="return confirm('Delete this tag?');"
+                                      class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">🗑 Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

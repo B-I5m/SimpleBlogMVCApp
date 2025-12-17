@@ -1,0 +1,78 @@
+﻿@model IReadOnlyCollection<SimpleBlogMVCApplication.Models.Entities.Post>
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Posts</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            ➕ Create post
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-secondary">
+            No posts yet.
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var post in Model)
+            {
+                <div class="col-12">
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+                            <h5 class="card-title fw-semibold">
+                                @post.Title
+                            </h5>
+
+                            <small class="text-muted d-block mb-2">
+                                📅 @post.PublishedAt.ToString("dd MMM yyyy")
+                            </small>
+
+                            @if (post.PostTags?.Any() == true)
+                            {
+                                <div class="mb-3 d-flex flex-wrap gap-2">
+                                    @foreach (var tag in post.PostTags)
+                                    {
+                                        <span class="badge rounded-pill bg-secondary">
+                                            #@tag.Tag.Name
+                                        </span>
+                                    }
+                                </div>
+                            }
+
+                            <div class="d-flex gap-2">
+                                <a asp-action="Details"
+                                   asp-route-id="@post.Id"
+                                   class="btn btn-sm btn-outline-info">
+                                    View
+                                </a>
+
+                                <a asp-action="Edit"
+                                   asp-route-id="@post.Id"
+                                   class="btn btn-sm btn-outline-warning">
+                                    Edit
+                                </a>
+
+                                <a asp-action="Delete"
+                                   asp-route-id="@post.Id"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Delete this post?')">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
