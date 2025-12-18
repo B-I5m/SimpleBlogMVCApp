@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleBlogMVCApplication.Models.Entities;
 using SimpleBlogMVCApplication.Services.Interfaces;
@@ -6,11 +7,13 @@ using SimpleBlogMVCApplication.ViewModels.Post;
 
 namespace SimpleBlogMVCApplication.Controllers;
 
+[Authorize]
 public class PostController : Controller
 {
     private readonly IPostService _postService;
     private readonly ITagService _tagService;
     private readonly IMapper _mapper;
+    
 
     public PostController(IPostService postService, ITagService tagService, IMapper mapper)
     {

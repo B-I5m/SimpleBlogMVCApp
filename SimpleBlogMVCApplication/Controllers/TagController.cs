@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleBlogMVCApplication.Models.Entities;
 using SimpleBlogMVCApplication.Services.Interfaces;
 using SimpleBlogMVCApplication.ViewModels.Tag;
 
 namespace SimpleBlogMVCApplication.Controllers;
-
+[Authorize]
 public class TagController : Controller
 {
     private readonly ITagService _tagService;
