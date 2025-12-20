@@ -11,7 +11,7 @@ public class AutoMapperProfile : Profile
         
         CreateMap<PostCreateViewModel, Post>().ReverseMap();
 
-        // Для Tag
+       
         CreateMap<TagCreateViewModel, Tag>().ReverseMap();
         CreateMap<TagViewModel, Tag>().ReverseMap();    
     }
